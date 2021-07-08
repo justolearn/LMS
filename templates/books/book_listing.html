@@ -1,0 +1,49 @@
+{% extends  "index.html" %}
+{% block content%}
+<div class="mt-3 text-right mr-3">
+    <a class="btn btn-primary" href="{% url 'add_book' %}">Add Book </a>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        {% for book in book_list %}
+        <div class="card-deck  mt-3 mr-3">
+            <div class="card">
+                <img class="card-img-top img-fluid" src="/media/{{ book.photo_main }}" alt="Card image cap"
+                     style="height:15rem;width:20rem;width:18rem">
+                <div class="card-body">
+                    <h5 class="card-title">{{book.name}}</h5>
+                    <p class="card-text">
+                    <h6 class="text-secondary">{{ book.author }}</h6>
+                    <h6 class="text-secondary">{{ book.pages }} Pages</h6>
+                    <h6 class="text-secondary">
+                        {% if book.available_books %}
+                            {{ book.available_books }} books available </h6>
+                        {% else %}
+                            0 books available
+                        {% endif %}
+
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <a href="{% url 'update_book' book.id %}">
+                                    <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-1">
+                                <a href="{% url 'delete_book' book.id %}">
+                                    <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </small>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

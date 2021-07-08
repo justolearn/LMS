@@ -1,0 +1,49 @@
+{% extends "index.html" %}
+{% block content %}
+<!--<div class="tab-pane fade" id="library" role="tabpanel" aria-labelledby="library-tab">-->
+    <div class="mt-3 text-right mr-3">
+        <a class="btn btn-primary" href="{% url 'issue_book' %}">Issue Book </a>
+    </div>
+
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">username</th>
+            <th scope="col">Book Name</th>
+            <th scope="col">Issue Date</th>
+            <th scope="col">Return Date</th>
+            <th scope="col">Book status</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for customer in issue_list %}
+        <tr>
+            <th scope="row">{{customer.id}}</th>
+            <td>{{customer.user.first_name}} {{customer.user.last_name}} ({{customer.user}})</td>
+            <td>{{customer.book.name}}</td>
+            <td>{{customer.issue_date}}</td>
+            <td>{{customer.return_date}}</td>
+            <!--                <td>{{customer.is_returned}}</td>-->
+            <td>
+                {% if customer.is_returned %}
+                <h6> Returned </h6>
+                {% else %}
+                <h6> Not Returned </h6>
+                {% endif %}
+            </td>
+            <td>
+                {% if customer.is_returned %}
+                <h6> - </h6>
+                {% else %}
+                <a href="{% url 'return_book' customer.id %}">return </a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<!--</div>-->
+{% endblock %}
+

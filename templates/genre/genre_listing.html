@@ -1,0 +1,28 @@
+{% extends  "index.html" %}
+{% block content%}
+<div class="mt-3 text-right mr-3">
+    <a class="btn btn-primary" href="{% url 'add_genre' %}">Add Genre </a>
+</div>
+<div class="container-fluid">
+    <table class="table table-striped mt-3">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+        {% for genre in genre_list %}
+            <tr>
+                <th scope="row">{{genre.id}}</th>
+                <td>{{genre.name}}</td>
+                <td><a href="{% url 'update_genre' genre.id %}">Update Genre </a> /
+                    <a href="{% url 'delete_genre' genre.id %}">Delete Genre </a>
+                </td>
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+</div>
+{% endblock %}

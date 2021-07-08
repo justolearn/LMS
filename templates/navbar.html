@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item {{user_page}}">
+                <a class="nav-link" href="{% url 'user_list' %}">User</a>
+            </li>
+            <li class="nav-item {{genre_page}}">
+                <a class="nav-link" href="{% url 'genre_list' %}">Genre</a>
+            </li>
+            <li class="nav-item {{author_page}}">
+                <a class="nav-link" href="{% url 'author_list' %}">Author</a>
+            </li>
+            <li class="nav-item {{book_page}}">
+                <a class="nav-link" href="{% url 'book_list' %}">Book</a>
+            </li>
+            <li class="nav-item {{library_page}}">
+                <a class="nav-link" href="{% url 'issue_list' %}">Library</a>
+            </li>
+        </ul>
+    </div>
+</nav>
